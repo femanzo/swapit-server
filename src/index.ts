@@ -4,7 +4,7 @@ import { onPlayerMatchmaking } from './matchmaking'
 uws
   .App()
   .ws('/*', {
-    idleTimeout: 30,
+    idleTimeout: 32,
     maxBackpressure: 1024,
     maxPayloadLength: 512,
     message: (ws, message) => {
