@@ -8,7 +8,7 @@ uws
     maxBackpressure: 1024,
     maxPayloadLength: 512,
     message: (ws, message) => {
-      const playerId = message.toString()
+      const playerId = Buffer.from(message).toString('utf-8')
       onPlayerMatchmaking(playerId, ws)
     },
   })
