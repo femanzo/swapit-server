@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto'
 import uws from 'uWebSockets.js'
 import { onPlayerMatchmaking, onPlayerDisconnect } from './matchmaking'
 
@@ -7,12 +8,16 @@ uws
     idleTimeout: 32,
     maxBackpressure: 1024,
     maxPayloadLength: 512,
+    open: (ws) => {
+      console.log('WebSocket connected')
+      ws.id = randomUUID()
+    },
+    close: (ws) => {
+      console.log('WebSocket closed')
+      onPlayerDisconnect(ws.id)
+    },
     message: (ws, message) => {
       const playerId = Buffer.from(message).toString('utf-8')
-
-      ws.on('close', () => {
-        onPlayerDisconnect(playerId)
-      })
 
       onPlayerMatchmaking(playerId, ws)
     },

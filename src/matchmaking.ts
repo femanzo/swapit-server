@@ -5,12 +5,12 @@ import { Player } from './models/Player'
 
 const playerQueue: Player[] = ([] = [])
 
-export const onPlayerDisconnect = (playerId: string) => {
-  const player = playerQueue.find((p) => p.id === playerId)
+export const onPlayerDisconnect = (connectionId: string) => {
+  const player = playerQueue.find((p) => p.ws.id === connectionId)
   if (player) {
     playerQueue.splice(playerQueue.indexOf(player), 1)
+    console.log(`Player ${player.id} disconnected!`)
   }
-  console.log(`Player ${playerId} disconnected!`)
 }
 
 export const onPlayerMatchmaking = (playerId: string, ws: WebSocket) => {
