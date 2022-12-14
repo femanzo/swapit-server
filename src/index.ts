@@ -1,5 +1,5 @@
 import uws from 'uWebSockets.js'
-import { createMatch } from './matchmaking'
+import { onPlayerMatchmaking } from './matchmaking'
 
 uws
   .App()
@@ -7,8 +7,9 @@ uws
     idleTimeout: 30,
     maxBackpressure: 1024,
     maxPayloadLength: 512,
-    message: (ws, message, isBinary) => {
-      // let ok = ws.send(message, isBinary, true)
+    message: (ws, message) => {
+      const playerId = message.toString()
+      onPlayerMatchmaking(playerId, ws)
     },
   })
   .get('/*', (res, req) => {

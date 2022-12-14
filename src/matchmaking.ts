@@ -5,15 +5,9 @@ import { Player } from './models/Player'
 
 const playerQueue: Player[] = ([] = [])
 
-export const onPlayerConnected = (
-  playerId: string,
-  wsConnection: WebSocket
-) => {
-  const player = new Player(playerId, wsConnection)
-  onPlayerMatchmaking(player)
-}
+export const onPlayerMatchmaking = (playerId: string, ws: WebSocket) => {
+  const player = new Player(playerId, ws)
 
-export const onPlayerMatchmaking = (player: Player) => {
   if (playerQueue.length === 0) {
     playerQueue.push(player)
     return
