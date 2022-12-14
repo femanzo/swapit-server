@@ -1,5 +1,5 @@
 import uws from 'uWebSockets.js'
-import { onPlayerMatchmaking } from './matchmaking'
+import { onPlayerMatchmaking, onPlayerDisconnect } from './matchmaking'
 
 uws
   .App()
@@ -9,6 +9,11 @@ uws
     maxPayloadLength: 512,
     message: (ws, message) => {
       const playerId = Buffer.from(message).toString('utf-8')
+
+      ws.on('close', () => {
+        onPlayerDisconnect(playerId)
+      })
+
       onPlayerMatchmaking(playerId, ws)
     },
   })
