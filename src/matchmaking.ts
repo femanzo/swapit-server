@@ -3,7 +3,7 @@ import type { WebSocket } from 'uWebSockets.js'
 import { Match } from './models/Match'
 import { Player } from './models/Player'
 
-const playerQueue: Player[] = ([] = [])
+const playerQueue: Player[] = []
 
 export const onPlayerDisconnect = (connectionId: string) => {
   const player = playerQueue.find((p) => p.ws.id === connectionId)
