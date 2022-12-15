@@ -18,15 +18,5 @@ module.exports = {
   },
   rules: {
     'prettier/prettier': 'error',
-    quotes: ['error', 'single', { avoidEscape: true }],
-    'comma-dangle': ['error', 'always-multiline'],
-    semi: ['error', 'never'],
-    '@typescript-eslint/quotes': [
-      'error',
-      'single',
-      {
-        allowTemplateLiterals: true,
-      },
-    ],
   },
 }
