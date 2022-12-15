@@ -1,5 +1,5 @@
 {
-  "name": "swapit-server",
+  "name": "gem-clash-server",
   "scripts": {
     "start": "node -r @swc-node/register src/index.ts",
     "prepare": "husky install",
