@@ -9,11 +9,11 @@ export const wss = uws
     maxBackpressure: 1024,
     maxPayloadLength: 512,
     open: (ws) => {
-      console.log('WebSocket connected')
+      console.log('Player connected')
       ws.id = randomUUID()
     },
     close: (ws) => {
-      console.log('WebSocket closed')
+      console.log('Player disconnected')
       onPlayerDisconnect(ws.id)
     },
     message: (ws, message) => {
